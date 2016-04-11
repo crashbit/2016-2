@@ -1,0 +1,25 @@
+p{
+	margin-top: 30px;
+	font-size: 16px;
+}
+
+p:hover{
+	background: #81DAF5;
+}
+
+p::first-letter{
+	font-size:200%;
+	color: #ccc;
+}
+
+.color-rojo{
+	color: red;
+}
+
+.borde{
+	border: 2px solid #ccc;
+}
+
+.fondo{
+	background: #81F79F;
+}
