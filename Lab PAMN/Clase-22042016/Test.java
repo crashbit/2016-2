@@ -1,10 +1,13 @@
 public class Test{
 	
-	public static void main(String args[]) throws AlumnoException{
+	public static void main(String args[]) {
 
 		Alumno noemi = new Alumno();
-
-		noemi.evalua(4);
+		try{
+			noemi.evalua(4);
+		}catch(AlumnoException a){
+			System.out.println("Usted no puede reprobar a un alumno");
+		}
 
 
 	}
