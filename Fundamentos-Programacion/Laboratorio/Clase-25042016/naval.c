@@ -3,15 +3,27 @@
 
 char cpu[5][5];
 char jugador[5][5];
+int puntaje_cpu = 0;
+int puntaje_jugador = 0;
 
 void carga_cpu();
 void carga_jugador();
 void muestra_tablero();
+void turno_cpu();
 int main(){
-
+	int ganador = 0;
 	carga_cpu();
 	carga_jugador();
 	muestra_tablero();
+
+	while(!ganador){
+		turno_cpu();
+		turno_jugador();
+		if(puntaje_cpu==5)
+			ganador=1;
+		else if(puntaje_jugador==5)
+			ganador=1;
+	}
 
 }
 
@@ -67,5 +79,20 @@ void muestra_tablero(){
 		}
 		printf("\n");
 	}
+}
+
+void turno_cpu(){
+	int i, j;
+
+	srand(time(NULL));   // Se genera la semilla
+	i = rand()%5;
+	j = rand()%5;
+	printf("Tirada de CPU, coordenadas %d,%d\n", i, j);
+	if(jugador[i][j]=='O'){
+		printf("El CPU le dio a tu barco\n");
+		jugador[i][j]='x';
+		puntaje_cpu = puntaje_cpu +1;
+	}
+
 }
 
