@@ -10,6 +10,7 @@ void carga_cpu();
 void carga_jugador();
 void muestra_tablero();
 void turno_cpu();
+void turno_jugador();
 int aleatorio(int n);
 
 int main(){
@@ -18,6 +19,24 @@ int main(){
 	carga_cpu();
 	carga_jugador();
 	muestra_tablero();
+
+	while(!ganador){
+		system("clear");
+		turno_cpu();
+		turno_jugador();
+		muestra_tablero();
+
+		if(puntaje_cpu==3){
+			ganador = 1;
+			printf("El CPU ganó\n");
+		}
+		if(puntaje_jugador==3){
+			ganador = 1;
+			printf("Tu ganaste!!!\n");
+		}
+	}
+
+
 
 	// while(!ganador){
 	// 	turno_cpu();
@@ -67,6 +86,8 @@ void carga_jugador(){
 void muestra_tablero(){
 	int i,j;
 
+
+	printf("Marcador: CPU: %d \t Usuario: %d\n", puntaje_cpu, puntaje_jugador);
 	for(i=0;i<5;i++){
 		for(j=0;j<5;j++){
 			printf(" %c |", cpu[i][j]);
@@ -92,6 +113,25 @@ void turno_cpu(){
 		printf("El CPU le dio a tu barco\n");
 		jugador[i][j]='x';
 		puntaje_cpu = puntaje_cpu +1;
+	}
+	else{
+		printf("El CPU ha fallado\n");
+	}
+
+}
+
+void turno_jugador(){
+	int i, j;
+
+	printf("Tu turno, coordenadas en i,j: ");
+	scanf("%d,%d", &i, &j);
+	if(cpu[i][j]=='*'){
+		printf("Le has dado a un barco del CPU\n");
+		cpu[i][j]='x';
+		puntaje_jugador = puntaje_jugador +1;
+	}
+	else{
+		printf("Usted ha fallado\n");
 	}
 
 }
