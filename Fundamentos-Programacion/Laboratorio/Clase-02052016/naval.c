@@ -21,9 +21,10 @@ int main(){
 	muestra_tablero();
 
 	while(!ganador){
-		system("clear");
+		
 		turno_cpu();
 		turno_jugador();
+		system("clear");
 		muestra_tablero();
 
 		if(puntaje_cpu==3){
@@ -35,18 +36,6 @@ int main(){
 			printf("Tu ganaste!!!\n");
 		}
 	}
-
-
-
-	// while(!ganador){
-	// 	turno_cpu();
-	// 	turno_jugador();
-	// 	if(puntaje_cpu==5)
-	// 		ganador=1;
-	// 	else if(puntaje_jugador==5)
-	// 		ganador=1;
-	// }
-
 }
 
 void carga_cpu(){
@@ -88,12 +77,12 @@ void muestra_tablero(){
 
 
 	printf("Marcador: CPU: %d \t Usuario: %d\n", puntaje_cpu, puntaje_jugador);
-	for(i=0;i<5;i++){
+/*	for(i=0;i<5;i++){
 		for(j=0;j<5;j++){
 			printf(" %c |", cpu[i][j]);
 		}
 		printf("\n");
-	}
+	}*/
 	printf("---------------------\n");
 	for(i=0;i<5;i++){
 		for(j=0;j<5;j++){
