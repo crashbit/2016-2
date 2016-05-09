@@ -18,6 +18,7 @@ int main(){
 
 	escuela = captura_datos();
 	muestra_datos(escuela);
+	guarda_datos(escuela);
 
 }
 
