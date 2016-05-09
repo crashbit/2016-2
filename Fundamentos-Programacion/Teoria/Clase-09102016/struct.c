@@ -10,6 +10,7 @@ struct Registro{
 
 struct Registro captura_datos();
 void muestra_datos(struct Registro escuela);
+void guarda_datos(struct Registro escuela);
 
 int main(){
 
@@ -44,3 +45,22 @@ struct Registro captura_datos(){
 void muestra_datos(struct Registro escuela){
 	printf("%s %s \t %d \t %2.2f\n", escuela.nombre, escuela.apellidos, escuela.edad, escuela.promedio);
 }
+
+void guarda_datos(struct Registro escuela){
+	FILE *fp;
+
+	fp = fopen("datos.txt", "w");
+
+	fprintf(fp, "%s %s \t %d \t %2.2f\n", escuela.nombre, escuela.apellidos, escuela.edad, escuela.promedio);
+
+	fclose(fp);
+}
+
+
+
+
+
+
+
+
+
