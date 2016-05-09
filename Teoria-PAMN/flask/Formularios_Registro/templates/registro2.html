@@ -2,6 +2,7 @@
 {% block body %}
 <h1>Registro de Usuario</h1>
 <form method="POST"> {# Default action to the same page #}
+ 
   {{ form.hidden_tag() }} {# Renders any hidden fields, including the CSRF #}
   {% for field in form if field.widget.input_type != 'hidden' %}
     {# Display filed #}

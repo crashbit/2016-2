@@ -24,7 +24,7 @@ def registro():
 	if form.validate_on_submit():
 		nombre = form.nombre.data
 		print nombre
-		form.nombre.data = ''
+		form.nombre.data = 'Es otro german'
 	return render_template("registro2.html", form=form)
 
 if __name__ == "__main__":
