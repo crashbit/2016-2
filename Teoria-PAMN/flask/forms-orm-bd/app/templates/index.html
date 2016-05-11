@@ -1,0 +1,11 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+	{% if g.user.is_authenticated %}
+	<h3>Bienvenido usuario: {{ g.user.nickname}}</h3>
+	{% else%}
+	<h3>Es necesario registrarse para ver esta página</h3>
+	{% endif%}
+
+{% endblock %}
