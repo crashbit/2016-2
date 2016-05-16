@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 const char* getfield(char* line, int num);
 
@@ -20,8 +21,9 @@ int main(){
     {
         char* tmp = strdup(cadena);
         printf("Cadena %s\n", getfield(tmp, 3));
-        // NOTE strtok clobbers tmp
-        //free(tmp);
+        free(tmp);
+        printf("Cadena %s\n", getfield(tmp, 1));
+        free(tmp);
     }
 
 
