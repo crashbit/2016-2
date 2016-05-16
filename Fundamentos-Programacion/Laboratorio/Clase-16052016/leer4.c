@@ -21,7 +21,6 @@ int main(){
     {
         char* tmp = strdup(cadena);
         printf("Cadena %s\n", getfield(tmp, 3));
-        free(tmp);
         printf("Cadena %s\n", getfield(tmp, 1));
         free(tmp);
     }
