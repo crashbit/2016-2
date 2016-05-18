@@ -23,6 +23,8 @@ from app import views, models
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from models import User
+from models import Producto
 
 admin = Admin(app, name='registro', template_mode='bootstrap3')
 admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Producto, db.session))

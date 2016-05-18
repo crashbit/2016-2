@@ -36,3 +36,15 @@ class User(db.Model):
 	def __repr__(self):
 		return '<User %r>' % (self.nickname)
 
+class Producto(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	nombre = db.Column(db.String(20), index=True, unique=True)
+	precio = db.Column(db.Float)
+	inventario = db.Column(db.Integer)
+	foto = db.Column(db.String(100))
+	descripcion = db.Column(db.Text)
+	marca = db.Column(db.String(20), index=True)
+	calificacion = db.Column(db.Float)
+
+	def __repr__(self):
+			return '<Producto %r>' % (self.nombre)
