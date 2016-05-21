@@ -47,4 +47,5 @@ class Producto(db.Model):
 	calificacion = db.Column(db.Float)
 
 	def __repr__(self):
-			return '<Producto %r>' % (self.nombre)
+			return '<Producto %r>' % (self.nombre 
+				)
