@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 const char* getfield(char* line, int num);
+int dado();
 
 int main(){
 	struct Marathon{
@@ -20,6 +21,7 @@ int main(){
     FILE *archivo;
     int i=0;
 
+    srand(time(NULL));
     archivo = fopen("tarjetas.txt", "r");
 
     if(archivo == NULL){
@@ -42,13 +44,13 @@ int main(){
         if(i==2) break;
     }
 
-    srand(time(NULL));
 	i = rand()%2;
 	printf("%d\n\n", i);
 	printf("%s\n", tarjetas[i].pregunta);
 
     fclose(archivo);
 
+    printf("\n\n El dado dice: %d", dado());
 	printf("\n\n");
 }
 
@@ -64,4 +66,15 @@ const char* getfield(char* line, int num)
     }
     return NULL;
 }
+
+int dado(){
+	int numero;
+
+	numero = rand()%6;
+	return numero +1;
+}
+
+
+
+
 
