@@ -3,6 +3,7 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 from app import app, db, lm
 from .forms import LoginForm, RegistroForm
 from .models import User
+from .models import Producto
 
 
 @lm.user_loader
@@ -66,3 +67,19 @@ def not_found_error(error):
 def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
+
+#Agregando ruta para productos
+@app.route("/productos")
+def lista_productos():
+	productos = Producto.query.all()
+	print productos
+	return render_template('catalogo.html',productos = productos)
+
+@app.route("/productos/<id_producto>")
+def desc_producto(id_producto):
+	producto = Producto.query.get(id_producto)
+	print producto
+	return render_template('desc_producto.html',producto = producto)
+
+
+

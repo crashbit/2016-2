@@ -1,0 +1,16 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+    {% for producto in productos %}
+        <li>
+            {{producto.nombre}}<br>
+            {{producto.descripcion}}<br>
+            {{producto.precio}}<br>
+            <a href="/productos/{{producto.id}}">Ver mas </a>
+        </li>
+        <hr>
+    {% endfor%}
+    </ul>
+{% endblock %}
