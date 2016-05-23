@@ -14,26 +14,37 @@ int main(){
         int puntos;
     };
 
-    char linea[1024];
-
     struct Marathon tarjetas[2];
+    char cadena[1024];
     FILE *archivo;
+    int i=0;
 
     archivo = fopen("tarjetas.txt", "r");
 
     if(archivo == NULL){
-    	printf("No existe el archivo");
-    	return 0;
+            printf("No existe el archivo\n");
+            return 0;
     }
 
-    
-    while(fgets(linea, 1024, archivo)){
-    	char* tmp = strdup(linea);
-        printf("Pregunta: %s\n", getfield(tmp, 1));
-        printf("Respuesta %s\n", getfield(tmp, 1));
+    while (fgets(cadena, 1024, archivo))
+    {
+        char* tmp = strdup(cadena);
+        strcpy(tarjetas[i].r_a, getfield(tmp, 2));
+        strcpy(tarjetas[i].pregunta, getfield(tmp, 1));
         free(tmp);
+        i++;
+        if(i==2) break;
     }
 
+    printf("Pregunta: %s\n", tarjetas[0].pregunta);
+    printf("Respuesta: %s\n", tarjetas[0].r_a);
+
+    printf("Pregunta: %s\n", tarjetas[1].pregunta);
+    printf("Respuesta: %s\n", tarjetas[1].r_a);
+
+
+
+    fclose(archivo);
 
 	printf("\n\n");
 }
