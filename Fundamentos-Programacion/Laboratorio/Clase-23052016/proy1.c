@@ -7,10 +7,11 @@ const char* getfield(char* line, int num);
 int main(){
 	struct Marathon{
         char pregunta[50];
-        char r_a[20];
-        char r_b[20];
-        char r_c[20];
-        char correcta;
+        char r_a[50];
+        char r_b[50];
+        char r_c[50];
+        char r_d[50];
+        char correcta[2];
         int puntos;
     };
 
@@ -29,6 +30,11 @@ int main(){
     while (fgets(cadena, 1024, archivo))
     {
         char* tmp = strdup(cadena);
+        // tarjetas[i].puntos = atoi(getfield(tmp, 7));
+        // strcpy(tarjetas[i].correcta,getfield(tmp, 6));
+        // strcpy(tarjetas[i].r_c,getfield(tmp, 5));
+        // strcpy(tarjetas[i].r_c,getfield(tmp, 4));
+        // strcpy(tarjetas[i].r_b,getfield(tmp, 3));
         strcpy(tarjetas[i].r_a, getfield(tmp, 2));
         strcpy(tarjetas[i].pregunta, getfield(tmp, 1));
         free(tmp);
@@ -36,13 +42,10 @@ int main(){
         if(i==2) break;
     }
 
-    printf("Pregunta: %s\n", tarjetas[0].pregunta);
-    printf("Respuesta: %s\n", tarjetas[0].r_a);
-
-    printf("Pregunta: %s\n", tarjetas[1].pregunta);
-    printf("Respuesta: %s\n", tarjetas[1].r_a);
-
-
+    srand(time(NULL));
+	i = rand()%2;
+	printf("%d\n\n", i);
+	printf("%s\n", tarjetas[i].pregunta);
 
     fclose(archivo);
 
@@ -61,3 +64,4 @@ const char* getfield(char* line, int num)
     }
     return NULL;
 }
+
