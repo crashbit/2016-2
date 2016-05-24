@@ -29,17 +29,32 @@ int main(){
             return 0;
     }
 
+    // Cargamos los datos en las tarjetas
     while (fgets(cadena, 1024, archivo))
     {
-        char* tmp = strdup(cadena);
-        // tarjetas[i].puntos = atoi(getfield(tmp, 7));
-        // strcpy(tarjetas[i].correcta,getfield(tmp, 6));
-        // strcpy(tarjetas[i].r_c,getfield(tmp, 5));
-        // strcpy(tarjetas[i].r_c,getfield(tmp, 4));
-        // strcpy(tarjetas[i].r_b,getfield(tmp, 3));
-        strcpy(tarjetas[i].r_a, getfield(tmp, 2));
-        strcpy(tarjetas[i].pregunta, getfield(tmp, 1));
-        free(tmp);
+        char* tmp1 = strdup(cadena);
+        char* tmp2 = strdup(cadena);
+        char* tmp3 = strdup(cadena);
+        char* tmp4 = strdup(cadena);
+        char* tmp5 = strdup(cadena);
+        char* tmp6 = strdup(cadena);
+        char* tmp7 = strdup(cadena);
+
+        tarjetas[i].puntos = atoi(getfield(tmp7, 7));
+        strcpy(tarjetas[i].correcta, getfield(tmp6, 6));
+        strcpy(tarjetas[i].r_d, getfield(tmp5, 5));
+        strcpy(tarjetas[i].r_c, getfield(tmp4, 4));
+        strcpy(tarjetas[i].r_b, getfield(tmp3, 3));
+        strcpy(tarjetas[i].r_a, getfield(tmp2, 2));
+        strcpy(tarjetas[i].pregunta, getfield(tmp1, 1));
+
+        free(tmp1);
+        free(tmp2);
+        free(tmp3);
+        free(tmp4);
+        free(tmp5);
+        free(tmp6);
+        free(tmp7);
         i++;
         if(i==2) break;
     }
