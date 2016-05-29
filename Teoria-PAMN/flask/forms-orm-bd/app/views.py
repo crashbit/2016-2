@@ -4,6 +4,7 @@ from app import app, db, lm
 from .forms import LoginForm, RegistroForm, AgregarForm
 from .models import User
 from .models import Producto
+from .models import Carrito
 
 
 @lm.user_loader
@@ -29,6 +30,7 @@ def login():
 		if user:
 			if user.password == form.password.data:
 				login_user(user, remember = session['remember_me'])
+				session['productos'] = list()
 				flash('Usuario autenticado')
 				next = request.args.get('next')
 				return redirect(next or url_for('index'))
@@ -43,6 +45,7 @@ def registro():
 		db.session.add(user)
 		db.session.commit()
 		login_user(user, remember=True)
+		session['productos'] = list()
 		flash('Usuario registrado')
 		return redirect(url_for('index'))
 	return render_template('registro.html', title='Registro', form=form)
@@ -50,6 +53,7 @@ def registro():
 
 @app.route("/logout")
 def logout():
+	session['productos'] = list()
 	logout_user()
 	return redirect(url_for('index'))
 
@@ -86,9 +90,16 @@ def desc_producto(id_producto):
 def agregar(id_producto):
 	form = AgregarForm()
 	if form.validate_on_submit():
+		productos = session['productos']
+		producto_nombre = Producto.query.get(id_producto)
+		producto = [id_producto, producto_nombre.nombre, form.cantidad.data]
+		productos.append(producto)
+		session['productos'] = productos
+
 		cantidad = form.cantidad.data
 		producto = Producto.query.get(id_producto)
-		return render_template('carrito.html', producto = producto, cantidad = cantidad)
+		print session
+		return render_template('carrito.html', productos = session['productos'])
 
 	productos = Producto.query.all()
 	return render_template('catalogo.html',productos = productos)

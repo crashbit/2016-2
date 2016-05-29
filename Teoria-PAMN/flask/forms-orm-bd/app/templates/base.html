@@ -20,6 +20,7 @@
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Tiendita</a>
         <ul class="right hide-on-med-and-down">
         {% if g.user.is_authenticated %}
+
           <li><a href="/logout">Salir</a></li>
           <li><a href="/registro">Perfil</a></li>
         {% else%}
@@ -30,6 +31,9 @@
 
         <ul id="nav-mobile" class="side-nav">
        {% if g.user.is_authenticated %}
+         <% if carrito%>
+          <li><a href="/ver_carrito">Ver carrito</a>
+          <% endif %>
           <li><a href="/logout">Salir</a></li>
           <li><a href="/registro">Perfil</a></li>
         {% else%}

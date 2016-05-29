@@ -1,6 +1,7 @@
 #coding: UTF-8
 from app import db
 from sqlalchemy.ext.hybrid import hybrid_property
+from datetime import datetime
 
 
 class User(db.Model):
@@ -8,6 +9,7 @@ class User(db.Model):
 	nickname = db.Column(db.String(20), index=True, unique=True)
 	password = db.Column(db.String(20))
 	email = db.Column(db.String(120), index=True, unique=True)
+	carritos = db.relationship('Carrito', backref='cliente', lazy='dynamic')
 	
 	def __init__(self, nickname="none", password="none", email="none"):
 		self.nickname = nickname
@@ -45,7 +47,32 @@ class Producto(db.Model):
 	descripcion = db.Column(db.Text)
 	marca = db.Column(db.String(20), index=True)
 	calificacion = db.Column(db.Float)
+	producto_en = db.relationship('Carrito_Producto', backref='Producto', lazy='dynamic')
+
 
 	def __repr__(self):
-			return '<Producto %r>' % (self.nombre 
-				)
+		return '<Producto %r>' % (self.nombre)
+
+class Carrito(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
+	fecha = db.Column(db.DateTime)
+	carrito_tiene = db.relationship('Carrito_Producto', backref='Carrito', lazy='dynamic')
+
+	def __init__(self, id_user):
+		self.id_user = id_user
+		self.fecha = datetime.now()
+
+	def __repr__(self):
+		return '<Carrito %r>' % (self.id)
+
+class Carrito_Producto(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	id_carrito = db.Column(db.Integer, db.ForeignKey('carrito.id'))
+	id_producto = db.Column(db.Integer, db.ForeignKey('producto.id'))
+	cantidad = db.Column(db.Integer)
+
+	def __repr__(self):
+		return '<Carrito_Producto %r>' % (self.id)
+
+

@@ -6,7 +6,24 @@
             <div class="col s1 m12">
             {% if g.user.is_authenticated %}
             <h5>Usted es el usuario: {{ g.user.nickname}}</h5>
-            <h5>Ha agregado: {{cantidad}} unidades de {{producto.nombre}} al carrito</h5>
+                <table>
+                 <thead>
+                  <tr>
+                      <th data-field="nombre">Producto</th>
+                      <th data-field="cantidad">Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for producto in productos %}
+                    <tr>
+                        <td>{{producto[1]}}</td>
+                        <td>{{producto[2]}}</td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+                </table>
+
             {% endif %}
             <a href="/productos" class="waves-effect waves-light btn-large">Continuar comprando</a>
             </div>
