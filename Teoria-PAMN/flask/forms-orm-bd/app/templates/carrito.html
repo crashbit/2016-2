@@ -1,0 +1,14 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+            <div class="col s1 m12">
+            {% if g.user.is_authenticated %}
+            <h5>Usted es el usuario: {{ g.user.nickname}}</h5>
+            <h5>Ha agregado: {{cantidad}} unidades de {{producto.nombre}} al carrito</h5>
+            {% endif %}
+            </div>
+    </div>
+    
+{% endblock %}

@@ -14,8 +14,15 @@
                         <p>{{producto.precio}}</p>
                     </div>
                     <div class="card-action">
-                    	<form action=""
-                        <a href="/productos/{{producto.id}}" class="waves-effect waves-light btn">Agregar al carrito</a>
+                    	<form action="/agregar/{{producto.id}}" method="post">
+	                    	{{ form.hidden_tag() }}
+	                    	<div class="col s12 m1">
+	                    	{{ form.cantidad.label }}{{ form.cantidad(size=5) }}
+	                    	</div>
+	                    	<div class="col s12 m12">
+	                        	<button class="waves-effect waves-light btn" type="submit" name="action">Agregar al carrito</button>
+	                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

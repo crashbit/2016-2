@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, session, url_for, request, g, abort
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm
-from .forms import LoginForm, RegistroForm
+from .forms import LoginForm, RegistroForm, AgregarForm
 from .models import User
 from .models import Producto
 
@@ -78,8 +78,19 @@ def lista_productos():
 @app.route("/productos/<id_producto>")
 def desc_producto(id_producto):
 	producto = Producto.query.get(id_producto)
-	print producto
-	return render_template('desc_producto.html',producto = producto)
+	form = AgregarForm()
+	return render_template('desc_producto.html',producto = producto, form = form)
 
+@app.route("/agregar/<id_producto>", methods=['GET', 'POST'])
+@login_required #Quiere decir que para agregar algo al carrito el usuario debe estar loggeado
+def agregar(id_producto):
+	form = AgregarForm()
+	if form.validate_on_submit():
+		cantidad = form.cantidad.data
+		producto = Producto.query.get(id_producto)
+		return render_template('carrito.html', producto = producto, cantidad = cantidad)
+
+	productos = Producto.query.all()
+	return render_template('catalogo.html',productos = productos)
 
 
