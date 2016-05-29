@@ -2,15 +2,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul>
-    {% for producto in productos %}
-        <li>
-            {{producto.nombre}}<br>
-            {{producto.descripcion}}<br>
-            {{producto.precio}}<br>
-            <a href="/productos/{{producto.id}}">Ver mas </a>
-        </li>
-        <hr>
-    {% endfor%}
-    </ul>
+    <div class="row">
+
+        {% for producto in productos %}
+            <div class="col s12 m3"> <!-- esta declaración dice, en movil 1 sola imagen, en tablet y desktop 3 imagenes -->
+                <div class="card small">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/productos/' + producto.foto) }}" />
+                        <span class="card-title">{{producto.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>{{producto.descripcion}}</p>
+                        <p>{{producto.precio}}</p>
+                    </div>
+                    <div class="card-action">
+                      
+                        <a href="/productos/{{producto.id}}" class="waves-effect waves-light btn">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor%}
+
+    </div>
 {% endblock %}
