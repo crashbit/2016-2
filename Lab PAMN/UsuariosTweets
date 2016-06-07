@@ -1,0 +1,18 @@
+#Programa que identifica los usuarios y la cantidad en el texto
+contador = 0
+archivo = open("tweets.txt", "r")
+#Recorremos el archivio completo 
+for linea in archivo.readlines(): 
+	#Guardamos la pocision del @ en la linea si es que la hay igual el espacio   
+    posicionInicial = linea.find('@')
+    posicionFinal = linea.find(' ',posicionInicial)    
+    usuarios = linea[posicionInicial:posicionFinal]
+    #Se crea un diccionario que elimina los elementos repetidos 
+    dict.fromkeys(usuarios).keys()    
+    print (usuarios)
+    #Recorremos cada linea en busca de usuarios y los contamos     
+    for x in linea:    	
+    	if x == "@":
+    		contador = contador + 1
+print ("Hay ",contador,"usuarios")       
+archivo.close()
